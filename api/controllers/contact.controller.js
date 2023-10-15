@@ -4,34 +4,54 @@ const Phones = db.phones;
 const Op = db.Sequelize.Op;
 
 // Create contact
-exports.create = (req, res) => {
-    
+exports.create = ({ body, send }, res) => {
+    Contacts.create({ contact_name: body.contact_name })
+        .then(data => res.send(data))
+        .catch(message => res.send(message));
+
 };
 
 // Get all contacts
-exports.findAll = (req, res) => {
+exports.findAll = ({ send }, res) => {
     Contacts.findAll()
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred"
-            });
-        });
+        .then(data => res.send(data))
+        .catch(message => res.send(message));
 };
 
 // Get one contact by id
-exports.findOne = (req, res) => {
-  
+exports.findOne = ({ params }, res) => {
+    Contacts.findOne({
+        where: {
+            id: params.contactId
+        }
+    })
+        .then(data => res.send(data))
+        .catch(message => res.send(message));
 };
 
 // Update one contact by id
-exports.update = (req, res) => {
-    
+exports.update = ({ body, params }, res) => {
+    Contacts.update({ contact_name: body.contact_name }, { where: { id: params.contactId } })
+        .then(data => res.send(data))
+        .catch(message => res.send(message));
 };
 
 // Delete one contact by id
-exports.delete = (req, res) => {
-    
+exports.delete = ({ params }, res) => {
+    Contacts.destroy({
+        where: {
+            id: params.contactId
+        }
+    })
+        .then(() => res.send())
+        .catch(message => res.send(message));
+};
+
+// Delete all contacts
+exports.delete = ({ params }, res) => {
+    Contacts.destroy({
+        where: {}
+    })
+        .then(() => res.send())
+        .catch(message => res.send(message));
 };
