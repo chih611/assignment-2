@@ -48,7 +48,7 @@ exports.delete = ({ params }, res) => {
 };
 
 // Delete all contacts
-exports.delete = ({ params }, res) => {
+exports.deleteAll = (req, res) => {
     Contacts.destroy({
         where: {}
     })

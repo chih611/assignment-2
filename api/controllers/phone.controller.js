@@ -6,7 +6,7 @@ const Op = db.Sequelize.Op;
 exports.create = ({ params, body }, res) => {
     Phones.create({
         phone_name: body.name,
-        phone_no: body.no,
+        phone_no: body.number,
         contact_id: params.contactId
     })
         .then(data => res.send(data))
@@ -14,8 +14,12 @@ exports.create = ({ params, body }, res) => {
 };
 
 // Get all phones
-exports.findAll = (req, res) => {
-    Phones.findAll()
+exports.findAll = ({ params }, res) => {
+    Phones.findAll({
+        where: {
+            contact_id: params.contactId
+        }
+    })
         .then(data => res.send(data))
         .catch(message => res.send(message));
 };
@@ -33,7 +37,7 @@ exports.findOne = ({ params }, res) => {
 exports.update = ({ body, params }, res) => {
     Phones.update({
         phone_name: body.name,
-        phone_no: body.no
+        phone_no: body.number
     }, { where: { id: params.phoneId } })
         .then(data => res.send(data ? data : 'No data updated!'))
         .catch(message => res.send(message));
@@ -43,7 +47,8 @@ exports.update = ({ body, params }, res) => {
 exports.delete = ({ params }, res) => {
     Phones.destroy({
         where: {
-            id: params.contactId
+            id: params.phoneId,
+            contact_id: params.contactId
         }
     })
         .then(() => res.send())
@@ -51,9 +56,11 @@ exports.delete = ({ params }, res) => {
 };
 
 // Delete all phones
-exports.delete = (req, res) => {
+exports.deleteAll = ({ params }, res) => {
     Phones.destroy({
-        where: {}
+        where: {
+            contact_id: params.contactId
+        }
     })
         .then(() => res.send())
         .catch(message => res.send(message));

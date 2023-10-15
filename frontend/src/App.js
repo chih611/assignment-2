@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';  // import useEffect
 import './App.css';
+import { ContactList } from './components/ContactList';
 
 function App() {
 
     return (
-        <div>     
+        <div>
             <h1>Contactor</h1>
+            <ContactList />
         </div>
     );
 }

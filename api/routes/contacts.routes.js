@@ -13,7 +13,7 @@ module.exports = app => {
 
     router.delete("/contacts/:contactId", contacts.delete);
 
-    router.delete("/contacts/", contacts.delete);
+    router.delete("/contacts/", contacts.deleteAll);
 
     app.use('/api', router);
 };
