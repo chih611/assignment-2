@@ -1,4 +1,6 @@
-const URL = `http://192.168.4.105/api/contacts/`;
+import { IP_ADDRESS } from "./common";
+
+const URL = `http://${IP_ADDRESS}/api/contacts/`;
 
 export const getAllContacts = async () => {
     return fetch(URL)

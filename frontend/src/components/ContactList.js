@@ -21,7 +21,7 @@ export const ContactList = () => {
         <ul>
             <CreateNewContact setRFL={setRFL} />
             <DeleteAllContacts setRFL={setRFL} />
-            {list.map(({ id, contact_name }) =>
+            {list ? list.map(({ id, contact_name }) =>
                 toggleEdit && toggleEditId === id ?
                     <li key={id}>
                         <EditContactDetail
@@ -37,7 +37,7 @@ export const ContactList = () => {
                         <EditContact id={id} setTE={setTE} setTEId={setTEId} />
                         <PhoneList contactId={id} />
                     </li>
-            )}
+            ) : 'Connect API failed!!!'}
         </ul>
     </>);
 }
