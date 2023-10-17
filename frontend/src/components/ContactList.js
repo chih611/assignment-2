@@ -14,7 +14,7 @@ export const ContactList = () => {
     const [toggleEditId, setTEId] = useState(0);
 
     useEffect(() => {
-        if (refeshList) getAllContacts().then(rs => setList(rs)); setRFL(false);
+        if (refeshList) getAllContacts().then(rs => setList(rs)).then(() => setRFL(false));
     }, [refeshList]);
 
     return (<>

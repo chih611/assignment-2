@@ -18,10 +18,8 @@ export const EditContactDetail = ({ id, contact_name, setRFL, setTE }) => {
 
     const onOKClick = () => {
         updateContactById({ id: id, contact_name: contactName })
-            .then(ok => {
-                setRFL(ok);
-                setTE(false)
-            })
+            .then(ok => setRFL(ok))
+            .then(() => setTE(false))
     }
     return (<>
         <input type='text' onChange={onChange} value={contactName} />
