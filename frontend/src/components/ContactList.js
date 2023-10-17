@@ -39,7 +39,7 @@ export const ContactList = () => {
                         <PhoneList contactId={id} />
                         <hr />
                     </li>
-            ) : 'Connect API failed!!!'}
+            ) : 'API Connection failed!!!'}
         </ul>
     </>);
 }
