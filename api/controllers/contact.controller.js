@@ -13,7 +13,7 @@ exports.create = ({ body, send }, res) => {
 
 // Get all contacts
 exports.findAll = ({ send }, res) => {
-    Contacts.findAll()
+    Contacts.findAll({ order: [['id', 'DESC']] })
         .then(data => res.send(data))
         .catch(message => res.send(message));
 };

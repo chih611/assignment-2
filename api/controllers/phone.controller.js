@@ -18,7 +18,7 @@ exports.findAll = ({ params }, res) => {
     Phones.findAll({
         where: {
             contact_id: params.contactId
-        }
+        }, order: [['id', 'DESC']]
     })
         .then(data => res.send(data))
         .catch(message => res.send(message));
