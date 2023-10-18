@@ -1,1 +1,1 @@
-export const IP_ADDRESS = '192.168.4.106'
+export const IP_ADDRESS = 'localhost:5000'

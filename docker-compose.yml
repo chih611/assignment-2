@@ -9,24 +9,34 @@ services:
       dockerfile: Dockerfile
     ports:
       - 80:80
-      
+    depends_on:
+      - frontend
+    links:
+      - frontend
+
   frontend:
-    build: 
+    build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
       - 3000:3000
     volumes:
       - ./frontend:/app
-  
+    depends_on:
+      - api
+    links:
+      - api
+
   api:
-    build: 
+    build:
       context: ./api
       dockerfile: Dockerfile
     ports:
       - 5000:5000
     volumes:
       - ./api:/app
+    links:
+      - db
 
   db:
     image: postgres:15.3-alpine3.18

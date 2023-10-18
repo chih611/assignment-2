@@ -1,6 +1,6 @@
 import './App.css';
 import { ContactList } from './components/ContactList';
-import './css/app.css';
+
 function App() {
 
     return (
