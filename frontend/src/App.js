@@ -7,7 +7,6 @@ function App() {
         <>
             <div className='flex'>
                 <h1>Contactor</h1>
-                <p></p>
                 <ContactList />
             </div>
         </>
